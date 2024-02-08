@@ -1,0 +1,35 @@
+﻿@model MyApp2._1._7.Models.Word
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="form-wrap">
+    <h1>Create</h1>
+
+    <h4>Word</h4>
+    <hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                @* asp-forでバリデーションも含めてModelをBindしている *@
+                <label asp-for="EWord" class="control-label"></label>
+                <input asp-for="EWord" class="form-control" />
+                <span asp-validation-for="EWord" class="text-danger"></span>
+            </div>
+                <div class="form-group mb-3">
+                <label asp-for="JWord" class="control-label"></label>
+                <input asp-for="JWord" class="form-control" />
+                <span asp-validation-for="JWord" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary w-100" />
+            </div>
+        </form>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

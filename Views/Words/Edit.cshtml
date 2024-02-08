@@ -1,0 +1,52 @@
+﻿@model MyApp2._1._7.Models.Word
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="form-wrap">
+    <h1>Edit</h1>
+
+    <h4>Word</h4>
+    <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+                <div class="form-group mb-3">
+                <label asp-for="EWord" class="control-label"></label>
+                <input asp-for="EWord" class="form-control" />
+                <span asp-validation-for="EWord" class="text-danger"></span>
+            </div>
+                <div class="form-group mb-3">
+                <label asp-for="JWord" class="control-label"></label>
+                <input asp-for="JWord" class="form-control" />
+                <span asp-validation-for="JWord" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary w-100" id="saveButton" />
+            </div>
+        </form>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        window.onload = function () {
+            // Saveボタンを無効にする
+            document.getElementById("saveButton").disabled = true;
+
+            // フォーム内のどの入力フィールドが変更されたら
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener("input", function () {
+                    // Saveボタンを有効にする
+                    document.getElementById("saveButton").disabled = false;
+                });
+            }
+        };
+    </script>
+}

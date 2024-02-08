@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MyApp2._1._7.Models.Word>
+
+@{
+    ViewData["Title"] = "Home";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/Home/Index.css" />
+</head>
+<div class="main-content">
+    <div class="title-wrap">
+        <h1 class="app-title">We 漢<span>-Can-</span></h1>
+    </div>
+<h4 class="mb-5">
+    Are you sure that's what you want?<br />
+    Ask here and you'll find the answer.<br />
+        Post an English word and ask for the kanji you want to know!!
+</h4>
+<p>
+    <a asp-controller="Words" asp-action="Create" class="link-light">Create New</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <div class="card-body ps-4">
+                    <p class="cord-text content-en my-0">@Html.DisplayFor(modelItem => item.EWord)
+                    </p>                                       
+                    <p class="card-text content-ja mb-2">
+                        @Html.DisplayFor(modelItem => item.JWord)
+                    </p>
+                    <div class="card-footer text-end">
+                        <p class="card-text text-end my-0">Contributors</p>
+                        <p class="card-text my-0">
+                            @Html.DisplayNameFor(model => model.PostUser) : 
+                            "@Html.DisplayFor(modelItem => item.PostUser.UserName)"
+                        </p>
+                        <p class="card-text my-0">
+                            @Html.DisplayNameFor(model => model.UpdateUser) : 
+                            "@Html.DisplayFor(modelItem => item.UpdateUser.UserName)"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+</div>
